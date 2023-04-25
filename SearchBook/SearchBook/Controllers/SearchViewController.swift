@@ -7,19 +7,26 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class SearchViewController: UIViewController {
-
+    
+    var book: Book?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+    
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var book: Book?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTableView.delegate = self
         searchTableView.dataSource = self
         searchBar.delegate = self
+        searchBar.searchBarStyle = .minimal
     }
+    
     
     func request(from keyword: String?) {
         guard let url = URL(string: "https://openapi.naver.com/v1/search/book.json")
@@ -50,6 +57,13 @@ class SearchViewController: UIViewController {
             }
             .resume()
     }
+    
+    func saveTerm() {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "SearchBook", in: context) else { return }
+        guard let object = NSManagedObject(entity: entityDescription, insertInto: context) as? SearchBook else { return }
+        object.term = searchBar.text
+        appDelegate.saveContext()
+    }
 
 }
 
@@ -62,8 +76,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
-        if let books = book?.items[indexPath.row]{
-            cell.configure(with: books)
+        if let item = book?.items[indexPath.row]{
+            cell.configure(with: item)
         }
        return cell
     }
@@ -92,7 +106,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
-            request(from: searchText)
+            if searchText == "" {
+                self.view.endEditing(true)
+            }else {
+                request(from: searchText)
+                saveTerm()
+            }
         }
         self.view.endEditing(true)
     }
