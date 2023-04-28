@@ -33,8 +33,11 @@ class HistoryViewController: UIViewController {
     func fetchTerm() {
         let fetchRequest: NSFetchRequest<SearchBook> = SearchBook.fetchRequest()
         do {
+            
+            let sort = NSSortDescriptor(key: "date", ascending: false)
+                    fetchRequest.sortDescriptors = [sort]
             self.searchBook = try context.fetch(fetchRequest)
-            searchBook.sorted(by: {$0.date?.compare($1.date ?? Date()) == .orderedDescending})
+           
 //            HistoryTableView.reloadData()
         } catch {
             print(error)
