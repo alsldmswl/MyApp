@@ -10,9 +10,9 @@ import Alamofire
 import CoreData
 
 class SearchViewController: UIViewController {
-    
-    var book: Book?
+
     var searchBook = [SearchBook]()
+    var book: Book?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     
@@ -30,6 +30,14 @@ class SearchViewController: UIViewController {
     }
     
     
+    func saveTerm(with term: String) {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "SearchBook", in: context) else { return }
+        guard let object = NSManagedObject(entity: entityDescription, insertInto: context) as? SearchBook else { return }
+        object.setValue(term, forKey: "term")
+        object.setValue(Date(), forKey: "date")
+        appDelegate.saveContext()
+    }
+    
     func request(from keyword: String?) {
         guard let url = URL(string: "https://openapi.naver.com/v1/search/book.json")
         else {return}
@@ -41,7 +49,7 @@ class SearchViewController: UIViewController {
         ]
         
         AF.request(url, method: .get, parameters: parameters, headers: headers)
-            .responseJSON { response in
+            .responseJSON {response in
                 switch response.result {
                 case .success(let res):
                     do {
@@ -58,14 +66,6 @@ class SearchViewController: UIViewController {
                 }
             }
             .resume()
-    }
-    
-    func saveTerm(with term: String) {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "SearchBook", in: context) else { return }
-        guard let object = NSManagedObject(entity: entityDescription, insertInto: context) as? SearchBook else { return }
-        object.setValue(term, forKey: "term")
-        object.setValue(Date(), forKey: "date")
-        appDelegate.saveContext()
     }
 
 }
@@ -95,7 +95,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WebViewController") as! WebViewController
         self.present(detailVC, animated: true)
         
-        let bookLink = URLComponents(string: self.book?.items[indexPath.row].link ?? "")
+        let bookLink = URLComponents(string: book?.items[indexPath.row].link ?? "")
         guard let url = bookLink?.url else {return}
         let request = URLRequest(url: url)
         detailVC.webView.loadRequest(request)
@@ -112,8 +112,9 @@ extension SearchViewController: UISearchBarDelegate {
             if searchText == "" {
                 self.view.endEditing(true)
             }else {
-                request(from: searchText)
+                self.request(from: searchText)
                 saveTerm(with: searchText)
+               
             }
         }
         self.view.endEditing(true)
