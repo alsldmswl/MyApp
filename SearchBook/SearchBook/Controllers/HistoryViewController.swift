@@ -37,8 +37,6 @@ class HistoryViewController: UIViewController {
             let sort = NSSortDescriptor(key: "date", ascending: false)
                     fetchRequest.sortDescriptors = [sort]
             self.searchBook = try context.fetch(fetchRequest)
-           
-//            HistoryTableView.reloadData()
         } catch {
             print(error)
         }
@@ -56,6 +54,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.historyLabel.text = searchBook[indexPath.row].term
         cell.configure(with: indexPath.row)
         cell.delegate = self
+       
         return cell
     }
     

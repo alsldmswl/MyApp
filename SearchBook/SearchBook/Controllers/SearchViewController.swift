@@ -12,6 +12,7 @@ import CoreData
 class SearchViewController: UIViewController {
     
     var book: Book?
+    var searchBook = [SearchBook]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     
@@ -21,6 +22,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchTableView.delegate = self
         searchTableView.dataSource = self
         searchBar.delegate = self
@@ -58,10 +60,11 @@ class SearchViewController: UIViewController {
             .resume()
     }
     
-    func saveTerm() {
+    func saveTerm(with term: String) {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "SearchBook", in: context) else { return }
         guard let object = NSManagedObject(entity: entityDescription, insertInto: context) as? SearchBook else { return }
-        object.term = searchBar.text
+        object.setValue(term, forKey: "term")
+        object.setValue(Date(), forKey: "date")
         appDelegate.saveContext()
     }
 
@@ -110,7 +113,7 @@ extension SearchViewController: UISearchBarDelegate {
                 self.view.endEditing(true)
             }else {
                 request(from: searchText)
-                saveTerm()
+                saveTerm(with: searchText)
             }
         }
         self.view.endEditing(true)
