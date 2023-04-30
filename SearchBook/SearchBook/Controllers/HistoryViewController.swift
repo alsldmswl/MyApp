@@ -7,16 +7,12 @@
 
 import UIKit
 import CoreData
-import Alamofire
 
 class HistoryViewController: UIViewController {
    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     var searchBook = [SearchBook]()
-//    var book: Book?
-
-    
     
     @IBOutlet weak var HistoryTableView: UITableView!
     
@@ -25,47 +21,14 @@ class HistoryViewController: UIViewController {
 
         HistoryTableView.dataSource = self
         HistoryTableView.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchTerm()
         HistoryTableView.reloadData()
-        
     }
-    
-//    func request(from keyword: String?) {
-//        guard let url = URL(string: "https://openapi.naver.com/v1/search/book.json")
-//        else {return}
-//
-//        let parameters = ["query" : keyword]
-//        let headers: HTTPHeaders = [
-//            "X-Naver-Client-Id" : "VCgI64Ba084th1VwaY3r",
-//            "X-Naver-Client-Secret" : "N2Tq4LxJdq"
-//        ]
-//
-//        AF.request(url, method: .get, parameters: parameters, headers: headers)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success(let res):
-//                    do {
-//                        let jsonData = try JSONSerialization.data(withJSONObject: res, options: .prettyPrinted)
-//                        self.book = try JSONDecoder().decode(Book.self, from: jsonData)
-//                        DispatchQueue.main.async {
-//                            self.HistoryTableView.reloadData()
-//                        }
-//                    } catch(let error) {
-//                        print("error:", error)
-//                    }
-//                case .failure(let error):
-//                    print("---> \(error.localizedDescription)")
-//                }
-//            }
-//            .resume()
-//    }
 
-    
     func fetchTerm() {
         let fetchRequest: NSFetchRequest<SearchBook> = SearchBook.fetchRequest()
         do {
@@ -77,7 +40,6 @@ class HistoryViewController: UIViewController {
             print(error)
         }
     }
-
 }
 
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
@@ -90,7 +52,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.historyLabel.text = searchBook[indexPath.row].term
         cell.configure(with: indexPath.row)
         cell.delegate = self
-       
         return cell
     }
     
@@ -100,11 +61,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         self.present(searchVC, animated: true)
         searchVC.request(from: searchBook[indexPath.row].term)
         searchVC.searchBar.text = searchBook[indexPath.row].term
-        
-    
     }
-    
-    
 }
 
 extension HistoryViewController: HistoryTableViewCellDelegate {
@@ -119,6 +76,4 @@ extension HistoryViewController: HistoryTableViewCellDelegate {
         fetchTerm()
         HistoryTableView.reloadData()
     }
-    
-    
 }

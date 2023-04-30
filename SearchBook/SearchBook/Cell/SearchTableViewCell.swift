@@ -14,7 +14,6 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var searchTitleLabel: UILabel!
     @IBOutlet weak var searchAuthorLabel: UILabel!
     
-    
     func configure(with item: Item) {
         let imageURL = URL(string: item.image ?? "")
         searchImageView.kf.setImage(with: imageURL)

@@ -11,7 +11,7 @@ import CoreData
 
 class SearchViewController: UIViewController {
 
-    var searchBook = [SearchBook]()
+    var searchBook: SearchBook?
     var book: Book?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
@@ -19,7 +19,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,14 +28,15 @@ class SearchViewController: UIViewController {
         searchBar.searchBarStyle = .minimal
     }
     
-    
     func saveTerm(with term: String) {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "SearchBook", in: context) else { return }
         guard let object = NSManagedObject(entity: entityDescription, insertInto: context) as? SearchBook else { return }
-        object.setValue(term, forKey: "term")
-        object.setValue(Date(), forKey: "date")
-        appDelegate.saveContext()
+            object.setValue(term, forKey: "term")
+            object.setValue(Date(), forKey: "date")
+            appDelegate.saveContext()     
     }
+    
+ 
     
     func request(from keyword: String?) {
         guard let url = URL(string: "https://openapi.naver.com/v1/search/book.json")
@@ -67,10 +67,7 @@ class SearchViewController: UIViewController {
             }
             .resume()
     }
-
 }
-
-
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,7 +76,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
-        if let item = book?.items[indexPath.row]{
+        if let item = book?.items[indexPath.row] {
             cell.configure(with: item)
         }
        return cell
@@ -99,11 +96,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         guard let url = bookLink?.url else {return}
         let request = URLRequest(url: url)
         detailVC.webView.loadRequest(request)
-       
     }
-    
-
-    
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -113,8 +106,7 @@ extension SearchViewController: UISearchBarDelegate {
                 self.view.endEditing(true)
             }else {
                 self.request(from: searchText)
-                saveTerm(with: searchText)
-               
+                self.saveTerm(with: searchText)
             }
         }
         self.view.endEditing(true)

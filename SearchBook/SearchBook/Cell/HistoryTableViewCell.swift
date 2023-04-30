@@ -11,22 +11,12 @@ protocol HistoryTableViewCellDelegate: AnyObject {
     func didTapdeleteButton(with indexPath: Int)
 }
 
-//protocol HistoryViewControllerDelegate: AnyObject {
-//    func request(from keyword: String?)
-//}
-
 class HistoryTableViewCell: UITableViewCell {
     
     private var removeIndex: Int = 1
     weak var delegate: HistoryTableViewCellDelegate?
-//    weak var delegate2: HistoryViewControllerDelegate?
-    @IBOutlet weak var historyLabel: UILabel!
     
-//
-//    func requestSearch() {
-//        delegate2?.request(from: historyLabel.text)
-//    }
-//
+    @IBOutlet weak var historyLabel: UILabel!
 
     func configure(with index: Int) {
         removeIndex = index
@@ -35,6 +25,4 @@ class HistoryTableViewCell: UITableViewCell {
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         delegate?.didTapdeleteButton(with: removeIndex)
     }
-    
-
 }
