@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var fetchResult: PHFetchResult<PHAsset>!
     let imageManager: PHCachingImageManager = PHCachingImageManager()
     let cellIdentifier: String = "cell"
-    
+
     func requestCollection() {
         let cameraRoll: PHFetchResult<PHAssetCollection> = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
         
@@ -57,6 +57,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         PHPhotoLibrary.shared().register(self)
     }
+    
+    @IBAction func refreshButton(_ sender: UIBarButtonItem) {
+        self.tableView.reloadSections(IndexSet(0...0), with: .automatic)
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fetchResult?.count ?? 0
