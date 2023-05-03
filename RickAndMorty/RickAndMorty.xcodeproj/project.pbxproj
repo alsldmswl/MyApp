@@ -53,6 +53,10 @@
 		BDD44CD02A02672C006F5B2A /* RMSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CCF2A02672C006F5B2A /* RMSearchViewController.swift */; };
 		BDD44CD32A027423006F5B2A /* RMEpisodeInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CD22A027423006F5B2A /* RMEpisodeInfoCollectionViewCell.swift */; };
 		BDD44CD62A027475006F5B2A /* RMEpisodeInfoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CD52A027475006F5B2A /* RMEpisodeInfoCollectionViewCellViewModel.swift */; };
+		BDD44CD92A029825006F5B2A /* RMSettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CD82A029825006F5B2A /* RMSettingsViewViewModel.swift */; };
+		BDD44CDB2A02986C006F5B2A /* RMSettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CDA2A02986C006F5B2A /* RMSettingsCellViewModel.swift */; };
+		BDD44CDD2A0298DF006F5B2A /* RMSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CDC2A0298DF006F5B2A /* RMSettingsOption.swift */; };
+		BDD44CE02A029CDE006F5B2A /* RMSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD44CDF2A029CDE006F5B2A /* RMSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +108,10 @@
 		BDD44CCF2A02672C006F5B2A /* RMSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSearchViewController.swift; sourceTree = "<group>"; };
 		BDD44CD22A027423006F5B2A /* RMEpisodeInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisodeInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		BDD44CD52A027475006F5B2A /* RMEpisodeInfoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisodeInfoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		BDD44CD82A029825006F5B2A /* RMSettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSettingsViewViewModel.swift; sourceTree = "<group>"; };
+		BDD44CDA2A02986C006F5B2A /* RMSettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSettingsCellViewModel.swift; sourceTree = "<group>"; };
+		BDD44CDC2A0298DF006F5B2A /* RMSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSettingsOption.swift; sourceTree = "<group>"; };
+		BDD44CDF2A029CDE006F5B2A /* RMSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,7 @@
 		BDD44C7229FFAD0F006F5B2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BDD44CDE2A029CC8006F5B2A /* SwiftUI */,
 				BDD44CD12A0272FF006F5B2A /* EipsodeDetails */,
 				BDD44CC62A024F89006F5B2A /* Episode */,
 				BDD44CAF2A011FCD006F5B2A /* CharacterDetails */,
@@ -172,6 +181,7 @@
 		BDD44C7429FFAD1B006F5B2A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				BDD44CD72A02981A006F5B2A /* Setting */,
 				BDD44CD42A027439006F5B2A /* EpisodeDetail */,
 				BDD44CB72A012037006F5B2A /* CharacterDetail */,
 				BDD44C9A29FFF22E006F5B2A /* RMCharacterListViewViewModel.swift */,
@@ -323,6 +333,24 @@
 			path = EpisodeDetail;
 			sourceTree = "<group>";
 		};
+		BDD44CD72A02981A006F5B2A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				BDD44CD82A029825006F5B2A /* RMSettingsViewViewModel.swift */,
+				BDD44CDA2A02986C006F5B2A /* RMSettingsCellViewModel.swift */,
+				BDD44CDC2A0298DF006F5B2A /* RMSettingsOption.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		BDD44CDE2A029CC8006F5B2A /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				BDD44CDF2A029CDE006F5B2A /* RMSettingsView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -407,6 +435,7 @@
 				BDD44C7E29FFC2C6006F5B2A /* RMEpisode.swift in Sources */,
 				BDD44CB42A01201A006F5B2A /* RMCharacterInfoCollectionViewCell.swift in Sources */,
 				BDD44C6329FFAABF006F5B2A /* RMTabBarController.swift in Sources */,
+				BDD44CD92A029825006F5B2A /* RMSettingsViewViewModel.swift in Sources */,
 				BDD44CA12A00AC36006F5B2A /* RMCharacterCollectionViewCell.swift in Sources */,
 				BDD44C8529FFC372006F5B2A /* RMEpisodeViewController.swift in Sources */,
 				BDD44CAE2A0100FD006F5B2A /* RMImageLoader.swift in Sources */,
@@ -416,8 +445,11 @@
 				BDD44C6129FFAABF006F5B2A /* SceneDelegate.swift in Sources */,
 				BDD44CBD2A0120C4006F5B2A /* RMCharacterEpisodeCollectionViewCellViewModel.swift in Sources */,
 				BDD44C8929FFCB89006F5B2A /* RMService.swift in Sources */,
+				BDD44CDB2A02986C006F5B2A /* RMSettingsCellViewModel.swift in Sources */,
 				BDD44C7A29FFC2A8006F5B2A /* RMLocation.swift in Sources */,
+				BDD44CE02A029CDE006F5B2A /* RMSettingsView.swift in Sources */,
 				BDD44CB92A01208F006F5B2A /* RMCharacterInfoCollectionViewCellViewModel.swift in Sources */,
+				BDD44CDD2A0298DF006F5B2A /* RMSettingsOption.swift in Sources */,
 				BDD44C8D29FFCC3A006F5B2A /* RMEndpoint.swift in Sources */,
 				BDD44C9F29FFF5F4006F5B2A /* Extensions.swift in Sources */,
 				BDD44C7C29FFC2BD006F5B2A /* RMCharacter.swift in Sources */,
