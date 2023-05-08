@@ -7,13 +7,25 @@
 
 import UIKit
 
-class RMSearchViewController: UIViewController {
+final class RMSearchViewController: UIViewController {
 
     struct Config {
         enum `Type` {
             case character
             case episode
             case location
+            
+            var title: String {
+                switch self {
+                case .character:
+                    return "Search Characters"
+                case .location:
+                    return "Search Locations"
+                case .episode:
+                    return "Search Episodes"
+                    
+                }
+            }
         }
         let type: `Type`
     }
@@ -32,7 +44,7 @@ class RMSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Search"
+        title = config.type.title
         view.backgroundColor = .systemBackground
     }
     
