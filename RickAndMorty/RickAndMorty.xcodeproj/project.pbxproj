@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD14D3132A0E1619009D1D31 /* RMSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD14D3122A0E1619009D1D31 /* RMSearchResultViewModel.swift */; };
 		BD34A3482A0783B800AC4BE7 /* RMLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34A3472A0783B800AC4BE7 /* RMLocationView.swift */; };
 		BD34A34A2A0785EA00AC4BE7 /* RMLocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34A3492A0785EA00AC4BE7 /* RMLocationViewViewModel.swift */; };
 		BD34A34C2A07B19000AC4BE7 /* RMGetAllLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34A34B2A07B19000AC4BE7 /* RMGetAllLocationsResponse.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD14D3122A0E1619009D1D31 /* RMSearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSearchResultViewModel.swift; sourceTree = "<group>"; };
 		BD34A3472A0783B800AC4BE7 /* RMLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationView.swift; sourceTree = "<group>"; };
 		BD34A3492A0785EA00AC4BE7 /* RMLocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationViewViewModel.swift; sourceTree = "<group>"; };
 		BD34A34B2A07B19000AC4BE7 /* RMGetAllLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetAllLocationsResponse.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				BD34A35C2A089D3A00AC4BE7 /* RMSearchViewViewModel.swift */,
 				BD34A3612A089EAF00AC4BE7 /* RMNoSearchResultsViewViewModel.swift */,
 				BD34A3652A089EF900AC4BE7 /* RMSearchInputViewViewModel.swift */,
+				BD14D3122A0E1619009D1D31 /* RMSearchResultViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				BDD44C8129FFC356006F5B2A /* RMCharacterViewController.swift in Sources */,
 				BD34A3482A0783B800AC4BE7 /* RMLocationView.swift in Sources */,
 				BDD44CCA2A025282006F5B2A /* RMEpisodeListViewViewModel.swift in Sources */,
+				BD14D3132A0E1619009D1D31 /* RMSearchResultViewModel.swift in Sources */,
 				BDD44CC12A0242F4006F5B2A /* RMAPICacheManager.swift in Sources */,
 				BDD44CCC2A025C95006F5B2A /* RMGetAllEpisodesResponse.swift in Sources */,
 				BDD44CD62A027475006F5B2A /* RMEpisodeInfoCollectionViewCellViewModel.swift in Sources */,
